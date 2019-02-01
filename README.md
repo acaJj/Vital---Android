@@ -1,7 +1,9 @@
 # Vital-Android
-This repository contains an Android application for a project I worked on at Deltahacks 2019 with my friends Rafael Flora and Stefano Unlayao.
+This repository contains an Android application for a project I worked on at Deltahacks 2019 at McMaster University
 The repo contains a prototype that shows the main functionality of the app: the ability to plan a meal for a patient.
 Since it is a prototype it uses dummy data and functionality is limited to simply planning a meal.
+
+Currently being edited to better showcase its main functionality than our original prototype
 
 Below is the full project details:
 
@@ -28,3 +30,6 @@ Some of Vital's solutions include:
 
 ## How we built it
 Using Sketch and Sympli, we designed the app after solidifying the concept of Vital. Using Sympli, we were able to send over the design specifications through Android Studio to create our working prototype. 
+
+## Created By
+Rafael Flora, Stefano Unlayao, Jeffrey Jaca
