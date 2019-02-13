@@ -25,7 +25,6 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:fontFamily="@font/roboto"
-                android:text="Anthony"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
             <TextView
@@ -35,7 +34,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:fontFamily="@font/roboto"
-                android:text="Seat 134"
                 android:textSize="20dp"
                 android:textColor="@color/black" />
         </RelativeLayout>
@@ -47,7 +45,6 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/patientInfo"
             android:fontFamily="@font/roboto"
-            android:text="Last Time Served:"
             android:textSize="18dp" />
         <TextView
             android:id="@+id/nextTimeServed"
@@ -56,7 +53,6 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/lastTimeServed"
             android:fontFamily="@font/roboto"
-            android:text="Next Serving Time: October 29, 2018"
             android:textSize="18dp" />
     </RelativeLayout>
 

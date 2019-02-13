@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class PersonChoiceActivity extends AppCompatActivity {
+    private static final String ORDER_LIST = "new_food_order";
+    private static final String DASHBOARD_LIST = "patient_dashboard";
 
     private FragmentManager fm;
 
@@ -33,7 +35,7 @@ public class PersonChoiceActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
         if (fragment == null){
-            fragment = createStartingFragment();
+            fragment = createFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container,fragment)
                     .commit();
@@ -52,10 +54,7 @@ public class PersonChoiceActivity extends AppCompatActivity {
                         break;
 
                     case R.id.navigation_order:
-                        intent = new Intent(getBaseContext(), PersonChoiceActivity.class);
-                        intent.putExtra("SOURCE",0);
-                        startActivity(intent);
-                        break;
+                        break;//already here, don't do anything
 
                     case R.id.navigation_settings:
                         //nope
@@ -65,5 +64,14 @@ public class PersonChoiceActivity extends AppCompatActivity {
         });
     }
 
-    protected Fragment createStartingFragment(){return new PatientAllListFragment();}
+    /**
+     * Creates a PatientAllListFragment so the user can choose which patient to make food for
+     * recyclerview item onClick destination is set to NewOrderActivity
+     * @return the patient list fragment of patients to create a food order for
+     */
+    protected Fragment createFragment(){
+        PatientAllListFragment fragment = new PatientAllListFragment();
+        fragment.setDestination(ORDER_LIST);
+        return fragment;
+    }
 }

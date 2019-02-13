@@ -18,6 +18,8 @@ public class Patient {
         patientId = UUID.randomUUID();
     }
 
+    public UUID getPatientId(){return patientId;}
+
     public String getFirstName() {
         return firstName;
     }
@@ -66,7 +68,7 @@ public class Patient {
         this.nextTimeServed = nextTimeServed;
     }
 
-    public int isAlertType() {
+    public int getAlertType() {
         return alertType;
     }
 

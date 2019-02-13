@@ -30,7 +30,7 @@ public class DashboardActivity extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.azure));
         }
         setTitle("");
-
+/*
         ImageView patient2 = findViewById(R.id.patient2);
 
         patient2.setOnClickListener(new View.OnClickListener() {
@@ -39,9 +39,9 @@ public class DashboardActivity extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), ProfileActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
-        final ImageView topBar = findViewById(R.id.topBar);
+        /*final ImageView topBar = findViewById(R.id.topBar);
         final ImageView patient3 = findViewById(R.id.patient3);
         topBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class DashboardActivity extends AppCompatActivity {
                     filterType = 0;
                 }
             }
-        });
+        });*/
 
         BottomNavigationView bottomNavView = findViewById(R.id.navigation);
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -72,7 +72,7 @@ public class DashboardActivity extends AppCompatActivity {
                         break;
 
                     case R.id.navigation_order:
-                        intent = new Intent(getBaseContext(), PersonChoiceActivity.class);
+                        intent = new Intent(DashboardActivity.this, PersonChoiceActivity.class);
                         intent.putExtra("SOURCE",0);
                         startActivity(intent);
                         break;

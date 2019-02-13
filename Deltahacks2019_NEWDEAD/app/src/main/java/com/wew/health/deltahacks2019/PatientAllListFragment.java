@@ -13,10 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatientAllListFragment extends Fragment {
+    private static final String ORDER_LIST = "new_food_order";
+    private static final String DASHBOARD_LIST = "patient_dashboard";
 
     private RecyclerView mPatientsRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+
+    private String destination;//the destination of the user after clicking on a patient
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -42,8 +46,13 @@ public class PatientAllListFragment extends Fragment {
     public void updateList(){
         List<Patient> patientList = testPatients();
         if (mAdapter == null){
-            mAdapter = new PatientAdapter(patientList,1);
+            mAdapter = new PatientAdapter(patientList,1,destination);
+            mPatientsRecyclerView.setAdapter(mAdapter);
         }
+    }
+
+    public void setDestination(String dest){
+        this.destination = dest;
     }
 
     public List<Patient> testPatients(){
@@ -57,10 +66,10 @@ public class PatientAllListFragment extends Fragment {
         patient1.setAlertType(2);
         patient1.setLastTimeServed(System.currentTimeMillis());
         Long lastTime = patient1.getLastTimeServed();
-        Log.i("BORBOT last",""+lastTime);
+        Log.i("BORBOT last time",""+lastTime);
         patient1.setNextTimeServed(lastTime + 3);
-        Log.i("BORBOT last again",""+lastTime);
-        Log.i("BORBOT next",""+patient1.getNextTimeServed());
+        Log.i("BORBOT last time again",""+lastTime);
+        Log.i("BORBOT next time",""+patient1.getNextTimeServed());
         patients.add(patient1);
 
         Patient patient2 = new Patient();

@@ -24,13 +24,13 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientH
     private static final String DASHBOARD_LIST = "patient_dashboard";
 
     private List<Patient> mPatients;
-    private int listType;//0 if you only want alerts, 1 if you want all patients
-    private static String listLocation;//onClick is different depending on which activity the list is in
+    private int mListType;//0 if you only want alerts, 1 if you want all patients
+    private static String mListLocation;//onClick is different depending on which activity the list is in
 
-    PatientAdapter(List<Patient> pl, int tab, String location){
+    PatientAdapter(List<Patient> pl, int listTab, String location){
         mPatients = pl;
-        listType = tab;
-        listLocation = location;
+        mListType = listTab;
+        mListLocation = location;
     }
 
     public static class PatientHolder extends RecyclerView.ViewHolder{
@@ -51,8 +51,10 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientH
             nextServed = itemView.findViewById(R.id.nextTimeServed);
         }
 
-        private void bindData(Patient patient){
-            if (listLocation.equals(DASHBOARD_LIST)){
+        private void bindData(final Patient patient){
+            //if we are clicking from the DashboardActivity, then open a patient profile
+            //if clicking from PersonChoiceActivity, then open a NewOrderActivity
+            if (mListLocation.equals(DASHBOARD_LIST)){
                 cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -65,12 +67,22 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientH
                         dialog.show();
                     }
                 });
-            }else if (listLocation.equals(ORDER_LIST)){
+            }else if (mListLocation.equals(ORDER_LIST)){
                 cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //open up the... FRUIT MENU
                         Intent intent = new Intent(view.getContext(),NewOrderActivity.class);
+                        //send all the patient data
+                        intent.putExtra("ID",patient.getPatientId());
+                        intent.putExtra("firstName",patient.getFirstName());
+                        intent.putExtra("lastName",patient.getLastName());
+                        intent.putExtra("lastTimeServed",patient.getLastTimeServed());
+                        intent.putExtra("nextTimeServed",patient.getNextTimeServed());
+                        intent.putExtra("age",patient.getAge());
+                        intent.putExtra("seat",patient.getSeat());
+                        intent.putExtra("alertType",patient.getAlertType());
+                        intent.putExtra("alertMessage",patient.getAlertMessage());
                         view.getContext().startActivity(intent);
                     }
                 });
@@ -89,21 +101,32 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientH
     @Override
     public void onBindViewHolder(PatientHolder holder, int position){
         Patient patient = mPatients.get(position);
-
+        Log.i("Borbot patient info","" + patient.getFirstName());
         //if we are on alerts tab, only display patients that have an alert set
-        if (listType == 0){
-            if (patient.isAlertType() != ALERT_NONE){
+        //TODO: make sure view is not added if the patient is not being displayed
+        if (mListType == 0){
+            if (patient.getAlertType() != ALERT_NONE){
+                holder.cardView.setVisibility(View.VISIBLE);
+                holder.cardView.setLayoutParams(
+                        new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
                 bindPatientData(holder,patient);
+            }else{
+                holder.cardView.setVisibility(View.GONE);
+                holder.cardView.setLayoutParams(new RecyclerView.LayoutParams(0,0));
             }
         }else{//display all patients if on the all tab
+            holder.cardView.setVisibility(View.VISIBLE);
+            holder.cardView.setLayoutParams(
+                    new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
             bindPatientData(holder,patient);
         }
 
-        Log.i("BORBOT",""+getItemCount());
+        //Log.i("BORBOT",""+getItemCount());
     }
 
     //binds all patient data to the view holder
     private void bindPatientData(PatientHolder holder, Patient patient){
+
         String patientName = patient.getFirstName() + " " + patient.getLastName();
         String lastTime = "" + patient.getLastTimeServed();
         String nextTime = ""+patient.getNextTimeServed();
@@ -112,7 +135,7 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientH
         holder.patientSeat.setText(patient.getSeat());
         holder.lastServed.setText(lastTime);
         holder.nextServed.setText(nextTime);
-        if (patient.isAlertType() != ALERT_NONE){
+        if (patient.getAlertType() != ALERT_NONE){
             //TODO set the alert on the view
         }
 

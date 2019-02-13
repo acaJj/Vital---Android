@@ -17,20 +17,19 @@
         <activity android:name=".NewOrderActivity" />
         <activity android:name=".DashboardAllActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".DashboardActivity">
+        <activity android:name=".DashboardActivity"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".PatientListActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
-        <activity android:name=".PatientListActivity" />
-        <activity android:name=".FragmentActivity"></activity>
     </application>
 
 </manifest>

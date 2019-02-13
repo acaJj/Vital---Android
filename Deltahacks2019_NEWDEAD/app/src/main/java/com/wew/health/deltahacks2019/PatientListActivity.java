@@ -1,11 +1,14 @@
 package com.wew.health.deltahacks2019;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Debug;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -13,6 +16,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class PatientListActivity extends AppCompatActivity {
+    private static final String ORDER_LIST = "new_food_order";
+    private static final String DASHBOARD_LIST = "patient_dashboard";
 
     private ImageView dashboardAllTab;
     private ImageView dashboardAlertTab;
@@ -58,9 +63,7 @@ public class PatientListActivity extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()) {
                     case R.id.navigation_patients:
-                        intent = new Intent(getBaseContext(), DashboardActivity.class);
-                        startActivity(intent);
-                        break;
+                        break;//we are on this patients page so don't start a new activity
 
                     case R.id.navigation_order:
                         intent = new Intent(getBaseContext(), PersonChoiceActivity.class);
@@ -78,10 +81,13 @@ public class PatientListActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
         if (fragment == null){
+            Log.i("Borbot fragment create","Loading fragment container...");
             fragment = createStartingFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container,fragment)
                     .commit();
+        }else{
+            Log.i("Borbot fragment create","Not null...");
         }
     }
 
@@ -90,6 +96,8 @@ public class PatientListActivity extends AppCompatActivity {
             case R.id.dashboardAlert:
                 //if already on alerts list, then do nothing
                 if (currentTab == 0)return;
+                PatientAllListFragment fragment = (PatientAllListFragment) fm.findFragmentById(R.id.fragment_container);
+                fragment.setDestination(DASHBOARD_LIST);
                 fm.beginTransaction()
                         .replace(R.id.fragment_container, new PatientAlertsListFragment())
                         .commit();
@@ -109,4 +117,19 @@ public class PatientListActivity extends AppCompatActivity {
     }
 
     protected Fragment createStartingFragment(){return new PatientAlertsListFragment();}
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+    }
 }

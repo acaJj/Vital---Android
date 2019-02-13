@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatientAlertsListFragment extends Fragment {
+    private static final String ORDER_LIST = "new_food_order";
+    private static final String DASHBOARD_LIST = "patient_dashboard";
 
     private RecyclerView mPatientsRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -29,7 +31,7 @@ public class PatientAlertsListFragment extends Fragment {
         mPatientsRecyclerView = view.findViewById(R.id.patients_alerts_recycler_view);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mPatientsRecyclerView.setLayoutManager(mLayoutManager);
-
+        updateList();
         return view;
     }
 
@@ -42,7 +44,8 @@ public class PatientAlertsListFragment extends Fragment {
     public void updateList(){
         List<Patient> patientList = testPatients();
         if (mAdapter == null){
-            mAdapter = new PatientAdapter(patientList,0);
+            mAdapter = new PatientAdapter(patientList,0,DASHBOARD_LIST);
+            mPatientsRecyclerView.setAdapter(mAdapter);
         }
     }
 
@@ -57,10 +60,10 @@ public class PatientAlertsListFragment extends Fragment {
         patient1.setAlertType(2);
         patient1.setLastTimeServed(System.currentTimeMillis());
         Long lastTime = patient1.getLastTimeServed();
-        Log.i("BORBOT last",""+lastTime);
+        Log.i("BORBOT alert last time",""+lastTime);
         patient1.setNextTimeServed(lastTime + 3);
-        Log.i("BORBOT last again",""+lastTime);
-        Log.i("BORBOT next",""+patient1.getNextTimeServed());
+        Log.i("BORBOT alert last again",""+lastTime);
+        Log.i("BORBOT alert next",""+patient1.getNextTimeServed());
         patients.add(patient1);
 
         Patient patient2 = new Patient();
