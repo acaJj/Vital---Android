@@ -59,9 +59,9 @@ public class PatientAllListFragment extends Fragment {
         List<Patient> patients = new ArrayList<>();
 
         Patient patient1 = new Patient();
-        patient1.setFirstName("Anthony");
-        patient1.setLastName("Bauzon");
-        patient1.setAlertMessage("I have spiders on my penis");
+        patient1.setFirstName("Peter");
+        patient1.setLastName("Parker");
+        patient1.setAlertMessage("I have spiders on me");
         patient1.setSeat("A123");
         patient1.setAlertType(2);
         patient1.setLastTimeServed(System.currentTimeMillis());
@@ -73,8 +73,8 @@ public class PatientAllListFragment extends Fragment {
         patients.add(patient1);
 
         Patient patient2 = new Patient();
-        patient2.setFirstName("Celina");
-        patient2.setLastName("Gallardo");
+        patient2.setFirstName("Jack");
+        patient2.setLastName("Pearson");
         patient2.setAlertMessage("sober");
         patient2.setSeat("B456");
         patient2.setAlertType(1);
@@ -84,8 +84,8 @@ public class PatientAllListFragment extends Fragment {
         patients.add(patient2);
 
         Patient patient3 = new Patient();
-        patient3.setFirstName("John");
-        patient3.setLastName("Mercado");
+        patient3.setFirstName("William");
+        patient3.setLastName("Randall's dad");
         patient3.setSeat("A673");
         patient3.setAlertType(0);
         patient3.setLastTimeServed(System.currentTimeMillis());

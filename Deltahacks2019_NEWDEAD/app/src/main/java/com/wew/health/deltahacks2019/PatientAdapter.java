@@ -58,13 +58,19 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.PatientH
                 cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //get the activity that the cardView resides in
-                        Activity mContext = (Activity) view.getContext();
-                        //display patient menu
-                        Dialog dialog = new Dialog(mContext);
-                        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                        //dialog.setContentView(mContext.getLayoutInflater().inflate(R.layout.patient_popup_menu, null));
-                        dialog.show();
+                        //open up the... PATIENT PROFILE
+                        Intent intent = new Intent(view.getContext(),ProfileActivity.class);
+                        //send all the patient data
+                        intent.putExtra("ID",patient.getPatientId());
+                        intent.putExtra("firstName",patient.getFirstName());
+                        intent.putExtra("lastName",patient.getLastName());
+                        intent.putExtra("lastTimeServed",patient.getLastTimeServed());
+                        intent.putExtra("nextTimeServed",patient.getNextTimeServed());
+                        intent.putExtra("age",patient.getAge());
+                        intent.putExtra("seat",patient.getSeat());
+                        intent.putExtra("alertType",patient.getAlertType());
+                        intent.putExtra("alertMessage",patient.getAlertMessage());
+                        view.getContext().startActivity(intent);
                     }
                 });
             }else if (mListLocation.equals(ORDER_LIST)){
