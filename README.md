@@ -3,7 +3,7 @@ This repository contains an Android application for a project I worked on at Del
 The repo contains a prototype that shows the main functionality of the app: the ability to plan a meal for a patient.
 Since it is a prototype it uses dummy data and functionality is limited to simply planning a meal.
 
-Currently being edited to better showcase its main functionality than our original prototype
+Currently being edited to showcase its main functionality better than our original prototype
 
 Below is the full project details:
 
