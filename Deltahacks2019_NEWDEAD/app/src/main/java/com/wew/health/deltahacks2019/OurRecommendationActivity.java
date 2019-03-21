@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 public class OurRecommendationActivity extends AppCompatActivity {
 
-    private ActivityHelper mActivityHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +29,6 @@ public class OurRecommendationActivity extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.azure));
         }
         setTitle("");
-
-        mActivityHelper = new ActivityHelper();
 
         ImageView exitButton = findViewById(R.id.recommendationBack);
         exitButton.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +47,7 @@ public class OurRecommendationActivity extends AppCompatActivity {
         avocadoToastOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mActivityHelper.toggleOptionSelected(view.getContext(),avocadoToastOption,
+                ActivityHelper.toggleOptionSelected(view.getContext(),avocadoToastOption,
                         R.drawable.list_avocado_toast_selected,R.drawable.list_avocado_toast);
 
                 serveButton.setImageResource(R.drawable.btn_serve_active);
@@ -72,7 +68,7 @@ public class OurRecommendationActivity extends AppCompatActivity {
         oatmealOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mActivityHelper.toggleOptionSelected(view.getContext(),oatmealOption,
+                ActivityHelper.toggleOptionSelected(view.getContext(),oatmealOption,
                         R.drawable.list_oatmean_selected,R.drawable.list_oatmeal);
 
                 serveButton.setImageResource(R.drawable.btn_serve_active);
@@ -93,7 +89,7 @@ public class OurRecommendationActivity extends AppCompatActivity {
         plainToastOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mActivityHelper.toggleOptionSelected(view.getContext(),plainToastOption,
+                ActivityHelper.toggleOptionSelected(view.getContext(),plainToastOption,
                         R.drawable.list_plain_toast_selected,R.drawable.list_plain_toast);
 
                 serveButton.setImageResource(R.drawable.btn_serve_active);

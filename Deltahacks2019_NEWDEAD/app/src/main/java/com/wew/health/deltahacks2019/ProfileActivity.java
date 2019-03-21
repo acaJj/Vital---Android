@@ -29,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
         setTitle("");
 
+        //get the user's data from the intent
         Bundle extras = getIntent().getExtras();
         UUID id;
         String firstName = "", lastName = "", seat = "", alertMessage = "";
